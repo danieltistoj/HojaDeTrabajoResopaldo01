@@ -470,6 +470,7 @@ private void CargarTabla(int indexTipo, int indexForma, String paramtro) {
                     consulta = consulta + "id = " + id;
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Ingrese solo digitos", "Error", JOptionPane.ERROR_MESSAGE);
+                    consulta = consulta + "id = " + -1;
                 }
                 break;
                 case 1: // si es por nombre
