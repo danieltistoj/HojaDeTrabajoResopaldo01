@@ -653,14 +653,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_EntradaMousePanelBusqueda
 
     private void AcccionPanelesBusqueda(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AcccionPanelesBusqueda
-        String consulta;
+        String consulta = "";
         if(evt.getSource() == btnBuscarCliente){   
         consulta = cliente.getConsulta(comboTipo.getSelectedIndex(),comboForma.getSelectedIndex(),txtBuscarCliente.getText());
-        CargarTabla(consulta);
+       
       }
       if(evt.getSource() == btnBuscarProducto){
-          
+          consulta = producto.getConsulta(comboFormaProducto.getSelectedIndex(),comboOrdenProducto.getSelectedIndex(),txtBuscarProducto.getText());
+           
       }
+      CargarTabla(consulta);
     }//GEN-LAST:event_AcccionPanelesBusqueda
 
     private void SalidaMousePanelBusqueda(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalidaMousePanelBusqueda
