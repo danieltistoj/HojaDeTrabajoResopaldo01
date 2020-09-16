@@ -11,5 +11,11 @@ package Clase;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class Producto {
+    
+    public String getConsulta(int idexTipo,int indexOrden, String parametro){
+        String consulta = "select * from producto";
+        
+        return consulta;
+    }
 
 }
