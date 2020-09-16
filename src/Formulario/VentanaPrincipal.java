@@ -19,9 +19,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private TextPrompt PlaceHolderCliente, PlaceHolderProducto;
     private VariableLocal conexion; //objeto para la conexion a la BD
     private String[] titulosCliente = {"ID", "Nombre", "Nit", "Direccion", "Saldo"},
-              titulosProducto = {"ID","Nombre","Existencia","Precio"}; //Encabezados de las tablas
+            titulosProducto = {"ID", "Nombre", "Existencia", "Precio"}; //Encabezados de las tablas
     private Cliente cliente;//objeto de cliente
     private Producto producto;
+    private Reloj reloj;
 
     public VentanaPrincipal() {
         //quita los botones de cerrar y minimizar
@@ -29,12 +30,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
-        
+
         PlaceHolderCliente = new TextPrompt("Buscar Cliente", txtBuscarCliente);
         PlaceHolderProducto = new TextPrompt("Buscar Producto", txtBuscarProducto);
         conexion = new VariableLocal();
         cliente = new Cliente();
         producto = new Producto();
+        reloj = new Reloj(labelReloj); //Instanciamos el reloj
+        reloj.hilo1.start();//Lo encendemos
     }
 
     /**
@@ -54,11 +57,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         panelCerrarVentana = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        labelReloj = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         PnlLatIzquierdo = new javax.swing.JPanel();
         btnProducto = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        btnCompra = new javax.swing.JPanel();
+        btnRespaldo = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         btnCliente = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -76,7 +81,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        PnlCompra = new javax.swing.JPanel();
+        PnlRespaldo = new javax.swing.JPanel();
         PnlCliente = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCliente = new javax.swing.JTable();
@@ -155,6 +160,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(497, Short.MAX_VALUE)
+                .addComponent(labelReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelReloj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -162,25 +184,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 625, Short.MAX_VALUE)
-                .addComponent(panelMinimizarVentana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelCerrarVentana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(panelMinimizarVentana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(panelCerrarVentana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panelCerrarVentana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(panelMinimizarVentana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(panelCerrarVentana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelMinimizarVentana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PnlSuperiorLayout = new javax.swing.GroupLayout(PnlSuperior);
@@ -235,8 +260,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnCompra.setBackground(new java.awt.Color(19, 59, 92));
-        btnCompra.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnRespaldo.setBackground(new java.awt.Color(19, 59, 92));
+        btnRespaldo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 EventoClic(evt);
             }
@@ -251,19 +276,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Compra");
+        jLabel3.setText("Respaldo");
 
-        javax.swing.GroupLayout btnCompraLayout = new javax.swing.GroupLayout(btnCompra);
-        btnCompra.setLayout(btnCompraLayout);
-        btnCompraLayout.setHorizontalGroup(
-            btnCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnCompraLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout btnRespaldoLayout = new javax.swing.GroupLayout(btnRespaldo);
+        btnRespaldo.setLayout(btnRespaldoLayout);
+        btnRespaldoLayout.setHorizontalGroup(
+            btnRespaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnRespaldoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(48, 48, 48))
         );
-        btnCompraLayout.setVerticalGroup(
-            btnCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        btnRespaldoLayout.setVerticalGroup(
+            btnRespaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
@@ -307,7 +332,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PnlLatIzquierdoLayout.setHorizontalGroup(
             PnlLatIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnRespaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         PnlLatIzquierdoLayout.setVerticalGroup(
@@ -317,9 +342,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(btnProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(btnCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(btnRespaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(265, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -474,7 +499,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(PnlProductoLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)))
                 .addGroup(PnlProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnBuscarProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscarProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -489,20 +514,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         PnlCentral.add(PnlProducto, "card3");
 
-        PnlCompra.setBackground(new java.awt.Color(30, 95, 116));
+        PnlRespaldo.setBackground(new java.awt.Color(30, 95, 116));
 
-        javax.swing.GroupLayout PnlCompraLayout = new javax.swing.GroupLayout(PnlCompra);
-        PnlCompra.setLayout(PnlCompraLayout);
-        PnlCompraLayout.setHorizontalGroup(
-            PnlCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout PnlRespaldoLayout = new javax.swing.GroupLayout(PnlRespaldo);
+        PnlRespaldo.setLayout(PnlRespaldoLayout);
+        PnlRespaldoLayout.setHorizontalGroup(
+            PnlRespaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 762, Short.MAX_VALUE)
         );
-        PnlCompraLayout.setVerticalGroup(
-            PnlCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
+        PnlRespaldoLayout.setVerticalGroup(
+            PnlRespaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 518, Short.MAX_VALUE)
         );
 
-        PnlCentral.add(PnlCompra, "card4");
+        PnlCentral.add(PnlRespaldo, "card4");
 
         PnlCliente.setBackground(new java.awt.Color(30, 95, 116));
 
@@ -696,19 +721,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void EventoClic(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EventoClic
         if (evt.getSource() == btnCliente) {
             PnlCliente.setVisible(true);
-            PnlCompra.setVisible(false);
+            PnlRespaldo.setVisible(false);
             PnlProducto.setVisible(false);
         }
         if (evt.getSource() == btnProducto) {
             PnlCliente.setVisible(false);
-            PnlCompra.setVisible(false);
+            PnlRespaldo.setVisible(false);
             PnlProducto.setVisible(true);
         }
-        if (evt.getSource() == btnCompra) {
+        if (evt.getSource() == btnRespaldo) {
             PnlCliente.setVisible(false);
-            PnlCompra.setVisible(true);
+            PnlRespaldo.setVisible(true);
             PnlProducto.setVisible(false);
         }
+
     }//GEN-LAST:event_EventoClic
 //Entrada del cursor a los paneles laterales a la izquierda
     private void EntradaMause(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EntradaMause
@@ -718,8 +744,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (evt.getSource() == btnProducto) {
             btnProducto.setBackground(new Color(252, 218, 183));
         }
-        if (evt.getSource() == btnCompra) {
-            btnCompra.setBackground(new Color(252, 218, 183));
+        if (evt.getSource() == btnRespaldo) {
+            btnRespaldo.setBackground(new Color(252, 218, 183));
         }
 
     }//GEN-LAST:event_EntradaMause
@@ -731,8 +757,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (evt.getSource() == btnProducto) {
             btnProducto.setBackground(new Color(19, 59, 92));
         }
-        if (evt.getSource() == btnCompra) {
-            btnCompra.setBackground(new Color(19, 59, 92));
+        if (evt.getSource() == btnRespaldo) {
+            btnRespaldo.setBackground(new Color(19, 59, 92));
         }
 
     }//GEN-LAST:event_SalidaMause
@@ -741,7 +767,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void comboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboTipoActionPerformed
-
+//Accion de los "Botones" de buscar en alguna tabla cuando el cursor esta sobre ellos
     private void EntradaMousePanelBusqueda(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EntradaMousePanelBusqueda
         if (evt.getSource() == btnBuscarCliente) {
             btnBuscarCliente.setBackground(new Color(252, 218, 183));
@@ -751,7 +777,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_EntradaMousePanelBusqueda
-
+//Accion con respecto a los "Botones " de buscar en las tablas de cliente y producto
     private void AcccionPanelesBusqueda(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AcccionPanelesBusqueda
         String consulta = "";
         int tabla = -1; //indicara en el metodo cargarTabla que tabla y que encabezados debera de mandar a llenarTabla
@@ -767,7 +793,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
         CargarTabla(consulta, tabla);
     }//GEN-LAST:event_AcccionPanelesBusqueda
-
+//Accion de los "Botones" de busqueda cuando el cursor ya no esta sobre ellos
     private void SalidaMousePanelBusqueda(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalidaMousePanelBusqueda
         if (evt.getSource() == btnBuscarCliente) {
             btnBuscarCliente.setBackground(new Color(30, 95, 116));
@@ -777,19 +803,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             btnBuscarProducto.setBackground(new Color(30, 95, 116));
         }
     }//GEN-LAST:event_SalidaMousePanelBusqueda
-
+//Accion de los "Botones" cerrar y minimizar 
     private void AccionPanelMC(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccionPanelMC
-       if (evt.getSource() == panelCerrarVentana) {
-           System.exit(0);
+        if (evt.getSource() == panelCerrarVentana) {
+            System.exit(0);
 
         }
         if (evt.getSource() == panelMinimizarVentana) {
             this.setState(Frame.ICONIFIED);
         }
     }//GEN-LAST:event_AccionPanelMC
-
+//Accion de los "Botones" cerrrar y minimizar cuando el cursor esta sobre ellos 
     private void MaouseEntrarMC(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MaouseEntrarMC
-      if (evt.getSource() == panelCerrarVentana) {
+        if (evt.getSource() == panelCerrarVentana) {
             panelCerrarVentana.setBackground(new Color(205, 10, 10));
 
         }
@@ -797,7 +823,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             panelMinimizarVentana.setBackground(new Color(253, 219, 58));
         }
     }//GEN-LAST:event_MaouseEntrarMC
-
+//Accion de los "Botones" cuando ya no esta sobre ellos
     private void MaouseSalirMC(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MaouseSalirMC
         if (evt.getSource() == panelCerrarVentana) {
             panelCerrarVentana.setBackground(new Color(29, 45, 80));
@@ -846,15 +872,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PnlCentral;
     private javax.swing.JPanel PnlCliente;
-    private javax.swing.JPanel PnlCompra;
     private javax.swing.JPanel PnlLatIzquierdo;
     private javax.swing.JPanel PnlProducto;
+    private javax.swing.JPanel PnlRespaldo;
     private javax.swing.JPanel PnlSuperior;
     private javax.swing.JPanel btnBuscarCliente;
     private javax.swing.JPanel btnBuscarProducto;
     private javax.swing.JPanel btnCliente;
-    private javax.swing.JPanel btnCompra;
     private javax.swing.JPanel btnProducto;
+    private javax.swing.JPanel btnRespaldo;
     private javax.swing.JComboBox<String> comboForma;
     private javax.swing.JComboBox<String> comboFormaProducto;
     private javax.swing.JComboBox<String> comboOrdenProducto;
@@ -879,9 +905,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelBuscarCliente;
+    private javax.swing.JLabel labelReloj;
     private javax.swing.JPanel panelCerrarVentana;
     private javax.swing.JPanel panelMinimizarVentana;
     private javax.swing.JTable tablaCliente;
