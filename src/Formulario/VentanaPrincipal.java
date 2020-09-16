@@ -15,9 +15,10 @@ import javax.swing.JOptionPane;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    private TextPrompt PlaceHolderCliente,PlaceHolderProducto;
+    private TextPrompt PlaceHolderCliente, PlaceHolderProducto;
     private VariableLocal conexion; //objeto para la conexion a la BD
-    private String[] titulosCliente = {"ID", "Nombre", "Nit", "Direccion", "Saldo"}; //Encabezados de la tabla cliente
+    private String[] titulosCliente = {"ID", "Nombre", "Nit", "Direccion", "Saldo"},
+              titulosProducto = {"ID","Nombre","Existencia","Precio"}; //Encabezados de las tablas
     private Cliente cliente;//objeto de cliente
     private Producto producto;
 
@@ -30,7 +31,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PlaceHolderProducto = new TextPrompt("Buscar Producto", txtBuscarProducto);
         conexion = new VariableLocal();
         cliente = new Cliente();
-
+        producto = new Producto();
     }
 
     /**
@@ -589,10 +590,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void CargarTabla(String consulta) {
-        conexion.conexionMySQL.llenarTabla(titulosCliente,tablaCliente,consulta);
+    private void CargarTabla(String consulta, int tipoTabla) {
+        switch (tipoTabla) {
+            case 0:
+                conexion.conexionMySQL.llenarTabla(titulosCliente, tablaCliente, consulta);
+                txtBuscarCliente.setText("");
+                break;
+            case 1:
+                conexion.conexionMySQL.llenarTabla(titulosProducto, tablaProducto, consulta);
+                txtBuscarProducto.setText("");
+                break;
+        }
+
     }
- //Evento a la hora de hacer un click en los paneles del lateral izquierdo
+
+    //Evento a la hora de hacer un click en los paneles del lateral izquierdo
     private void EventoClic(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EventoClic
         if (evt.getSource() == btnCliente) {
             PnlCliente.setVisible(true);
@@ -643,36 +655,39 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_comboTipoActionPerformed
 
     private void EntradaMousePanelBusqueda(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EntradaMousePanelBusqueda
-      if(evt.getSource() == btnBuscarCliente){
-          btnBuscarCliente.setBackground(new Color(252, 218, 183));
-      }
-      if(evt.getSource() == btnBuscarProducto){
-          btnBuscarProducto.setBackground(new Color(252, 218, 183));
-          
-      }
+        if (evt.getSource() == btnBuscarCliente) {
+            btnBuscarCliente.setBackground(new Color(252, 218, 183));
+        }
+        if (evt.getSource() == btnBuscarProducto) {
+            btnBuscarProducto.setBackground(new Color(252, 218, 183));
+
+        }
     }//GEN-LAST:event_EntradaMousePanelBusqueda
 
     private void AcccionPanelesBusqueda(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AcccionPanelesBusqueda
         String consulta = "";
-        if(evt.getSource() == btnBuscarCliente){   
-        consulta = cliente.getConsulta(comboTipo.getSelectedIndex(),comboForma.getSelectedIndex(),txtBuscarCliente.getText());
-       
-      }
-      if(evt.getSource() == btnBuscarProducto){
-          consulta = producto.getConsulta(comboFormaProducto.getSelectedIndex(),comboOrdenProducto.getSelectedIndex(),txtBuscarProducto.getText());
-           
-      }
-      CargarTabla(consulta);
+        int tabla = -1; //indicara en el metodo cargarTabla que tabla y que encabezados debera de mandar a llenarTabla
+        if (evt.getSource() == btnBuscarCliente) {
+            System.out.println("entro cliente");
+            consulta = cliente.getConsulta(comboTipo.getSelectedIndex(), comboForma.getSelectedIndex(), txtBuscarCliente.getText());
+            tabla = 0;
+        }
+        if (evt.getSource() == btnBuscarProducto) {
+            System.out.println("entro");
+            consulta = producto.getConsulta(comboFormaProducto.getSelectedIndex(), comboOrdenProducto.getSelectedIndex(), txtBuscarProducto.getText());
+            tabla = 1;
+        }
+        CargarTabla(consulta, tabla);
     }//GEN-LAST:event_AcccionPanelesBusqueda
 
     private void SalidaMousePanelBusqueda(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalidaMousePanelBusqueda
-      if(evt.getSource() == btnBuscarCliente){
-          btnBuscarCliente.setBackground(new Color(30, 95, 116));
-          
-      }
-      if(evt.getSource() == btnBuscarProducto){
-           btnBuscarProducto.setBackground(new Color(30, 95, 116));
-      }
+        if (evt.getSource() == btnBuscarCliente) {
+            btnBuscarCliente.setBackground(new Color(30, 95, 116));
+
+        }
+        if (evt.getSource() == btnBuscarProducto) {
+            btnBuscarProducto.setBackground(new Color(30, 95, 116));
+        }
     }//GEN-LAST:event_SalidaMousePanelBusqueda
 
     /**
