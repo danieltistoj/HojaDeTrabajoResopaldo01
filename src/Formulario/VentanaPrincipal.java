@@ -15,9 +15,10 @@ import javax.swing.JOptionPane;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    private TextPrompt PlaceHolderCliente;
-    private VariableLocal conexion;
-    private String[] titulosCliente = {"ID", "Nombre", "Nit", "Direccion", "Saldo"};
+    private TextPrompt PlaceHolderCliente,PlaceHolderProducto;
+    private VariableLocal conexion; //objeto para la conexion a la BD
+    private String[] titulosCliente = {"ID", "Nombre", "Nit", "Direccion", "Saldo"}; //Encabezados de la tabla cliente
+    private Cliente cliente;//objeto de cliente
 
     public VentanaPrincipal() {
         initComponents();
@@ -25,7 +26,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
         PlaceHolderCliente = new TextPrompt("Buscar Cliente", txtBuscarCliente);
+        PlaceHolderProducto = new TextPrompt("Buscar Producto", txtBuscarProducto);
         conexion = new VariableLocal();
+        cliente = new Cliente();
 
     }
 
@@ -51,6 +54,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         PnlCentral = new javax.swing.JPanel();
         PnlProducto = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaProducto = new javax.swing.JTable();
+        txtBuscarProducto = new javax.swing.JTextField();
+        btnBuscarProducto = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         PnlCompra = new javax.swing.JPanel();
         PnlCliente = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -235,15 +245,96 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         PnlProducto.setBackground(new java.awt.Color(30, 95, 116));
 
+        tablaProducto.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tablaProducto.setForeground(new java.awt.Color(0, 0, 0));
+        tablaProducto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tablaProducto.setGridColor(new java.awt.Color(29, 45, 80));
+        tablaProducto.setRowHeight(20);
+        tablaProducto.setSelectionBackground(new java.awt.Color(252, 218, 183));
+        tablaProducto.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tablaProducto);
+
+        txtBuscarProducto.setBackground(new java.awt.Color(19, 59, 92));
+        txtBuscarProducto.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtBuscarProducto.setForeground(new java.awt.Color(255, 255, 255));
+
+        btnBuscarProducto.setBackground(new java.awt.Color(30, 95, 116));
+        btnBuscarProducto.setForeground(new java.awt.Color(30, 95, 116));
+        btnBuscarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AcccionPanelesBusqueda(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EntradaMousePanelBusqueda(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SalidaMousePanelBusqueda(evt);
+            }
+        });
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/find_search_locate_6201.png"))); // NOI18N
+
+        javax.swing.GroupLayout btnBuscarProductoLayout = new javax.swing.GroupLayout(btnBuscarProducto);
+        btnBuscarProducto.setLayout(btnBuscarProductoLayout);
+        btnBuscarProductoLayout.setHorizontalGroup(
+            btnBuscarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnBuscarProductoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
+        );
+        btnBuscarProductoLayout.setVerticalGroup(
+            btnBuscarProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout PnlProductoLayout = new javax.swing.GroupLayout(PnlProducto);
         PnlProducto.setLayout(PnlProductoLayout);
         PnlProductoLayout.setHorizontalGroup(
             PnlProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 762, Short.MAX_VALUE)
+            .addGroup(PnlProductoLayout.createSequentialGroup()
+                .addGroup(PnlProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(PnlProductoLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PnlProductoLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         PnlProductoLayout.setVerticalGroup(
             PnlProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 487, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlProductoLayout.createSequentialGroup()
+                .addContainerGap(167, Short.MAX_VALUE)
+                .addGroup(PnlProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuscarProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBuscarProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         PnlCentral.add(PnlProducto, "card3");
@@ -258,7 +349,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         PnlCompraLayout.setVerticalGroup(
             PnlCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 487, Short.MAX_VALUE)
+            .addGap(0, 495, Short.MAX_VALUE)
         );
 
         PnlCentral.add(PnlCompra, "card4");
@@ -292,13 +383,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnBuscarCliente.setForeground(new java.awt.Color(30, 95, 116));
         btnBuscarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ClicPnlBuscarCliente(evt);
+                AcccionPanelesBusqueda(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                EntradaPanel(evt);
+                EntradaMousePanelBusqueda(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                SalidaPanel(evt);
+                SalidaMousePanelBusqueda(evt);
             }
         });
 
@@ -436,56 +527,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private void CargarTabla(int indexTipo, int indexForma, String paramtro) {
-        String consulta = "select * from cliente";
-        boolean esTodos = false;
-        int id;
-        //Se evalua si se va a buscar por todos los cliente, por deudor o por sin deuda
-        switch (indexTipo) {
-            case 0:
-                esTodos = true;
-                break;
-            case 1:
-                consulta = consulta + " where Saldo > 0";
-                break;
-            case 2:
-                consulta = consulta + " where Saldo = 0";
-                break;
-        }
-        //Se verifica que se haya enviado algun parametro
-        if (!"".equals(paramtro)) {
-            System.out.println("entro");
-            //Verificamos si es una busqueda de todos los clientes 
-            if (esTodos) {
-                consulta = consulta + " where "; //si son toddos
-            } else {
-                consulta = consulta + " and "; //si no son todos
-
-            }
-            //Se verifica en que formato se desea buscar id, nombre o nit
-            switch (indexForma) {
-                case 0: // si es por id 
-           try {
-                    id = Integer.parseInt(paramtro);
-                    consulta = consulta + "id = " + id;
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Ingrese solo digitos", "Error", JOptionPane.ERROR_MESSAGE);
-                    consulta = consulta + "id = " + -1;
-                }
-                break;
-                case 1: // si es por nombre
-                    consulta = consulta + "Nombre = '" + paramtro + "'";
-                    break;
-                case 2:// si es por nit
-                    consulta = consulta + "Nit = '" + paramtro + "'";
-                    break;
-            }
-
-        }
-        System.out.println(consulta);
+    private void CargarTabla(String consulta) {
         conexion.conexionMySQL.llenarTabla(titulosCliente,tablaCliente,consulta);
-
     }
+ //Evento a la hora de hacer un click en los paneles del lateral izquierdo
     private void EventoClic(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EventoClic
         if (evt.getSource() == btnCliente) {
             PnlCliente.setVisible(true);
@@ -503,7 +548,7 @@ private void CargarTabla(int indexTipo, int indexForma, String paramtro) {
             PnlProducto.setVisible(false);
         }
     }//GEN-LAST:event_EventoClic
-
+//Entrada del cursor a los paneles laterales a la izquierda
     private void EntradaMause(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EntradaMause
         if (evt.getSource() == btnCliente) {
             btnCliente.setBackground(new Color(252, 218, 183));
@@ -516,7 +561,7 @@ private void CargarTabla(int indexTipo, int indexForma, String paramtro) {
         }
 
     }//GEN-LAST:event_EntradaMause
-
+//Salida del cursor de los paneles laterales a la izquierda
     private void SalidaMause(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalidaMause
         if (evt.getSource() == btnCliente) {
             btnCliente.setBackground(new Color(19, 59, 92));
@@ -530,26 +575,41 @@ private void CargarTabla(int indexTipo, int indexForma, String paramtro) {
 
     }//GEN-LAST:event_SalidaMause
 
-    private void EntradaPanel(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EntradaPanel
-        if (evt.getSource() == btnBuscarCliente) {
-            btnBuscarCliente.setBackground(new Color(252, 218, 183));
-        }
-    }//GEN-LAST:event_EntradaPanel
-
-    private void SalidaPanel(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalidaPanel
-        if (evt.getSource() == btnBuscarCliente) {
-            btnBuscarCliente.setBackground(new Color(30, 95, 116));
-        }
-    }//GEN-LAST:event_SalidaPanel
-//Boton para buscar un cliente
-    private void ClicPnlBuscarCliente(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClicPnlBuscarCliente
-        CargarTabla(comboTipo.getSelectedIndex(), comboForma.getSelectedIndex(), txtBuscarCliente.getText());
-        
-    }//GEN-LAST:event_ClicPnlBuscarCliente
 
     private void comboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboTipoActionPerformed
+
+    private void EntradaMousePanelBusqueda(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EntradaMousePanelBusqueda
+      if(evt.getSource() == btnBuscarCliente){
+          btnBuscarCliente.setBackground(new Color(252, 218, 183));
+      }
+      if(evt.getSource() == btnBuscarProducto){
+          btnBuscarProducto.setBackground(new Color(252, 218, 183));
+          
+      }
+    }//GEN-LAST:event_EntradaMousePanelBusqueda
+
+    private void AcccionPanelesBusqueda(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AcccionPanelesBusqueda
+        String consulta;
+        if(evt.getSource() == btnBuscarCliente){   
+        consulta = cliente.getConsulta(comboTipo.getSelectedIndex(),comboForma.getSelectedIndex(),txtBuscarCliente.getText());
+        CargarTabla(consulta);
+      }
+      if(evt.getSource() == btnBuscarProducto){
+          
+      }
+    }//GEN-LAST:event_AcccionPanelesBusqueda
+
+    private void SalidaMousePanelBusqueda(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalidaMousePanelBusqueda
+      if(evt.getSource() == btnBuscarCliente){
+          btnBuscarCliente.setBackground(new Color(30, 95, 116));
+          
+      }
+      if(evt.getSource() == btnBuscarProducto){
+           btnBuscarProducto.setBackground(new Color(30, 95, 116));
+      }
+    }//GEN-LAST:event_SalidaMousePanelBusqueda
 
     /**
      * @param args the command line arguments
@@ -594,11 +654,14 @@ private void CargarTabla(int indexTipo, int indexForma, String paramtro) {
     private javax.swing.JPanel PnlProducto;
     private javax.swing.JPanel PnlSuperior;
     private javax.swing.JPanel btnBuscarCliente;
+    private javax.swing.JPanel btnBuscarProducto;
     private javax.swing.JPanel btnCliente;
     private javax.swing.JPanel btnCompra;
     private javax.swing.JPanel btnProducto;
     private javax.swing.JComboBox<String> comboForma;
     private javax.swing.JComboBox<String> comboTipo;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -607,12 +670,16 @@ private void CargarTabla(int indexTipo, int indexForma, String paramtro) {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelBuscarCliente;
     private javax.swing.JTable tablaCliente;
+    private javax.swing.JTable tablaProducto;
     private javax.swing.JTextField txtBuscarCliente;
+    private javax.swing.JTextField txtBuscarProducto;
     // End of variables declaration//GEN-END:variables
 }
