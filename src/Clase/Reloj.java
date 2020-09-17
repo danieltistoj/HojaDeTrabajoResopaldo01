@@ -7,7 +7,7 @@ package Clase;
 
 import java.util.*;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
+
 
 /**
  *
@@ -27,8 +27,8 @@ public class Reloj implements Runnable {
 
     @Override
     public void run() {
-        Thread ct = Thread.currentThread();
-
+      //  Thread ct = Thread.currentThread();
+/*
         while (ct == hilo1) {
             calcula();
             labelReloj.setText(hora + ":" + minuto + ":" + segundo + " " + AmPm);
@@ -37,11 +37,20 @@ public class Reloj implements Runnable {
             } catch (Exception e) {
             }
         }
+        */
+       while(true){
+            calcula();
+            labelReloj.setText(hora + ":" + minuto + ":" + segundo + " " + AmPm);
+            //labelReloj.setText(hora + ":" + minuto + ":" + segundo);
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+            }
+           
+       }
     }
 
-    public Thread getHilo1() {
-        return hilo1;
-    }
+    
 
     private void calcula() {
         Calendar calendario = new GregorianCalendar();
@@ -58,6 +67,12 @@ public class Reloj implements Runnable {
         }
         minuto = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
         segundo = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
+        
+     /*
+     hora = fechaHoraActual.getHours()>9?""+fechaHoraActual.getHours():"0"+fechaHoraActual.getHours();
+     minuto = fechaHoraActual.getMinutes()>9?""+fechaHoraActual.getMinutes():"0"+fechaHoraActual.getMinutes();
+     segundo = fechaHoraActual.getSeconds()>9?""+fechaHoraActual.getSeconds():"0"+fechaHoraActual.getSeconds();
+*/
     }
 
 }

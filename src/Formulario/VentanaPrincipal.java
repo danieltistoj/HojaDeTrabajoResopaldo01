@@ -8,6 +8,7 @@ package Formulario;
 import java.awt.Color;
 import Clase.*;
 import java.awt.Frame;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,6 +39,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         producto = new Producto();
         reloj = new Reloj(labelReloj); //Instanciamos el reloj
         reloj.hilo1.start();//Lo encendemos
+        
     }
 
     /**
@@ -160,13 +162,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jPanel6.setBackground(new java.awt.Color(19, 59, 92));
+        jPanel6.setForeground(new java.awt.Color(60, 63, 65));
+
+        labelReloj.setBackground(new java.awt.Color(255, 255, 255));
+        labelReloj.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelReloj.setForeground(new java.awt.Color(255, 255, 255));
+        labelReloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(497, Short.MAX_VALUE)
-                .addComponent(labelReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(543, Short.MAX_VALUE)
+                .addComponent(labelReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
