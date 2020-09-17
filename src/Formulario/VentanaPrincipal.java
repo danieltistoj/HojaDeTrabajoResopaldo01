@@ -9,6 +9,7 @@ import java.awt.Color;
 import Clase.*;
 import java.awt.Frame;
 import java.util.Date;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,9 +38,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         conexion = new VariableLocal();
         cliente = new Cliente();
         producto = new Producto();
-        reloj = new Reloj(labelReloj,labelFecha); //Instanciamos el reloj
+        reloj = new Reloj(labelReloj, labelFecha); //Instanciamos el reloj
         reloj.hilo1.start();//Lo encendemos
         
+        this.txtRutaExp.setEnabled(false);
+        this.txtRutaImp.setEnabled(false);
+        this.txtHora.setEnabled(false);
+        this.txtMinutos.setEnabled(false);
+        this.txtSegundos.setEnabled(false);
     }
 
     /**
@@ -85,6 +91,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         PnlRespaldo = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        txtRutaExp = new javax.swing.JTextField();
+        pnlBuscarArchivoExp = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        btnExportar = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        txtRutaImp = new javax.swing.JTextField();
+        btnImportar = new javax.swing.JButton();
+        pnlBuscarArchivoImp = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        txtHora = new javax.swing.JTextField();
+        txtMinutos = new javax.swing.JTextField();
+        txtSegundos = new javax.swing.JTextField();
+        btnEditarHora = new javax.swing.JButton();
+        btnAceptarHora = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         PnlCliente = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCliente = new javax.swing.JTable();
@@ -184,7 +210,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(labelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(337, 337, 337)
                 .addComponent(labelReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,7 +225,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(panelMinimizarVentana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -497,7 +523,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addComponent(jLabel13)
                                 .addGap(28, 28, 28)
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         PnlProductoLayout.setVerticalGroup(
             PnlProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -531,15 +557,280 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         PnlRespaldo.setBackground(new java.awt.Color(30, 95, 116));
 
+        jPanel7.setBackground(new java.awt.Color(29, 45, 80));
+
+        pnlBuscarArchivoExp.setBackground(new java.awt.Color(29, 45, 80));
+        pnlBuscarArchivoExp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClickRespaldo(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EntraRespaldo(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SaleRespaldo(evt);
+            }
+        });
+
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/File_Explorer_23583.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnlBuscarArchivoExpLayout = new javax.swing.GroupLayout(pnlBuscarArchivoExp);
+        pnlBuscarArchivoExp.setLayout(pnlBuscarArchivoExpLayout);
+        pnlBuscarArchivoExpLayout.setHorizontalGroup(
+            pnlBuscarArchivoExpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBuscarArchivoExpLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlBuscarArchivoExpLayout.setVerticalGroup(
+            pnlBuscarArchivoExpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+        );
+
+        btnExportar.setBackground(new java.awt.Color(19, 59, 92));
+        btnExportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportar.setText("Exportar");
+        btnExportar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClickRespaldo(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EntraRespaldo(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SaleRespaldo(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(txtRutaExp, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pnlBuscarArchivoExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(69, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtRutaExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlBuscarArchivoExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(btnExportar)
+                .addGap(20, 20, 20))
+        );
+
+        jPanel8.setBackground(new java.awt.Color(29, 45, 80));
+
+        btnImportar.setBackground(new java.awt.Color(19, 59, 92));
+        btnImportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnImportar.setText("Importar");
+        btnImportar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClickRespaldo(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EntraRespaldo(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SaleRespaldo(evt);
+            }
+        });
+
+        pnlBuscarArchivoImp.setBackground(new java.awt.Color(29, 45, 80));
+        pnlBuscarArchivoImp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClickRespaldo(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EntraRespaldo(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SaleRespaldo(evt);
+            }
+        });
+
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/File_Explorer_23583.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnlBuscarArchivoImpLayout = new javax.swing.GroupLayout(pnlBuscarArchivoImp);
+        pnlBuscarArchivoImp.setLayout(pnlBuscarArchivoImpLayout);
+        pnlBuscarArchivoImpLayout.setHorizontalGroup(
+            pnlBuscarArchivoImpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBuscarArchivoImpLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+        );
+        pnlBuscarArchivoImpLayout.setVerticalGroup(
+            pnlBuscarArchivoImpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap(229, Short.MAX_VALUE)
+                .addComponent(txtRutaImp, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlBuscarArchivoImp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(231, 231, 231))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(259, 259, 259)
+                .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(txtRutaImp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(pnlBuscarArchivoImp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(33, 33, 33)
+                .addComponent(btnImportar)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/3499803-automatic-backups-clock-daily-scheduled-timer-web-hosting_107636.png"))); // NOI18N
+
+        jPanel9.setBackground(new java.awt.Color(29, 45, 80));
+
+        btnEditarHora.setBackground(new java.awt.Color(19, 59, 92));
+        btnEditarHora.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarHora.setText("Editar");
+        btnEditarHora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClickRespaldo(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EntraRespaldo(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SaleRespaldo(evt);
+            }
+        });
+
+        btnAceptarHora.setBackground(new java.awt.Color(19, 59, 92));
+        btnAceptarHora.setForeground(new java.awt.Color(255, 255, 255));
+        btnAceptarHora.setText("Aceptar");
+        btnAceptarHora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClickRespaldo(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                EntraRespaldo(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SaleRespaldo(evt);
+            }
+        });
+
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("Hora");
+
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("Minuto");
+
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("Segundo");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(btnEditarHora)
+                        .addGap(64, 64, 64)
+                        .addComponent(btnAceptarHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(76, 76, 76))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtHora)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMinutos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(81, 81, 81)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21))
+                        .addGap(16, 16, 16))))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEditarHora)
+                    .addComponent(btnAceptarHora, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
+        );
+
         javax.swing.GroupLayout PnlRespaldoLayout = new javax.swing.GroupLayout(PnlRespaldo);
         PnlRespaldo.setLayout(PnlRespaldoLayout);
         PnlRespaldoLayout.setHorizontalGroup(
             PnlRespaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 762, Short.MAX_VALUE)
+            .addGroup(PnlRespaldoLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlRespaldoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(PnlRespaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(PnlRespaldoLayout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
         );
         PnlRespaldoLayout.setVerticalGroup(
             PnlRespaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 518, Short.MAX_VALUE)
+            .addGroup(PnlRespaldoLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(PnlRespaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         PnlCentral.add(PnlRespaldo, "card4");
@@ -652,7 +943,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PnlClienteLayout.setHorizontalGroup(
             PnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnlClienteLayout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(96, Short.MAX_VALUE)
                 .addGroup(PnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PnlClienteLayout.createSequentialGroup()
@@ -709,7 +1000,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 994, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -847,6 +1138,79 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_MaouseSalirMC
 
+    private void EntraRespaldo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EntraRespaldo
+        if (evt.getSource() == pnlBuscarArchivoExp) {
+            pnlBuscarArchivoExp.setBackground(new Color(252, 218, 183));
+
+        }
+        if (evt.getSource() == pnlBuscarArchivoImp) {
+            pnlBuscarArchivoImp.setBackground(new Color(252, 218, 183));
+        }
+        if (evt.getSource() == btnExportar) {
+            btnExportar.setBackground(new Color(252, 218, 183));
+        }
+        if (evt.getSource() == btnImportar) {
+            btnImportar.setBackground(new Color(252, 218, 183));
+        }
+        if (evt.getSource() == btnEditarHora) {
+            btnEditarHora.setBackground(new Color(252, 218, 183));
+        }
+        if (evt.getSource() == btnAceptarHora) {
+            btnAceptarHora.setBackground(new Color(252, 218, 183));
+        }
+
+    }//GEN-LAST:event_EntraRespaldo
+
+    private void SaleRespaldo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaleRespaldo
+        if (evt.getSource() == pnlBuscarArchivoExp) {
+            pnlBuscarArchivoExp.setBackground(new Color(29, 45, 80));
+
+        }
+        if (evt.getSource() == pnlBuscarArchivoImp) {
+            pnlBuscarArchivoImp.setBackground(new Color(29, 45, 80));
+        }
+        if (evt.getSource() == btnExportar) {
+            btnExportar.setBackground(new Color(19, 59, 92));
+        }
+        if (evt.getSource() == btnImportar) {
+            btnImportar.setBackground(new Color(19, 59, 92));
+        }
+        if (evt.getSource() == btnEditarHora) {
+            btnEditarHora.setBackground(new Color(19, 59, 92));
+        }
+        if (evt.getSource() == btnAceptarHora) {
+            btnAceptarHora.setBackground(new Color(19, 59, 92));
+        }
+    }//GEN-LAST:event_SaleRespaldo
+
+    private void ClickRespaldo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClickRespaldo
+        if (evt.getSource() == pnlBuscarArchivoExp) {
+            JFileChooser ch = new JFileChooser();
+            ch.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            int se = ch.showSaveDialog(null);
+            if(se == JFileChooser.APPROVE_OPTION){
+             String ruta = ch.getSelectedFile().getPath();
+             txtRutaExp.setText(ruta);
+            }
+
+        }
+        if (evt.getSource() == pnlBuscarArchivoImp) {
+            System.out.println("Entro");
+        }
+        if (evt.getSource() == btnExportar) {
+            System.out.println("Entro");
+        }
+        if (evt.getSource() == btnImportar) {
+            System.out.println("Entro");
+        }
+        if (evt.getSource() == btnEditarHora) {
+            System.out.println("Entro");
+        }
+        if (evt.getSource() == btnAceptarHora) {
+            System.out.println("Entro");
+        }
+    }//GEN-LAST:event_ClickRespaldo
+
     /**
      * @param args the command line arguments
      */
@@ -889,9 +1253,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel PnlProducto;
     private javax.swing.JPanel PnlRespaldo;
     private javax.swing.JPanel PnlSuperior;
+    private javax.swing.JButton btnAceptarHora;
     private javax.swing.JPanel btnBuscarCliente;
     private javax.swing.JPanel btnBuscarProducto;
     private javax.swing.JPanel btnCliente;
+    private javax.swing.JButton btnEditarHora;
+    private javax.swing.JButton btnExportar;
+    private javax.swing.JButton btnImportar;
     private javax.swing.JPanel btnProducto;
     private javax.swing.JPanel btnRespaldo;
     private javax.swing.JComboBox<String> comboForma;
@@ -905,7 +1273,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -919,6 +1293,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelBuscarCliente;
@@ -926,9 +1303,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel labelReloj;
     private javax.swing.JPanel panelCerrarVentana;
     private javax.swing.JPanel panelMinimizarVentana;
+    private javax.swing.JPanel pnlBuscarArchivoExp;
+    private javax.swing.JPanel pnlBuscarArchivoImp;
     private javax.swing.JTable tablaCliente;
     private javax.swing.JTable tablaProducto;
     private javax.swing.JTextField txtBuscarCliente;
     private javax.swing.JTextField txtBuscarProducto;
+    private javax.swing.JTextField txtHora;
+    private javax.swing.JTextField txtMinutos;
+    private javax.swing.JTextField txtRutaExp;
+    private javax.swing.JTextField txtRutaImp;
+    private javax.swing.JTextField txtSegundos;
     // End of variables declaration//GEN-END:variables
 }
