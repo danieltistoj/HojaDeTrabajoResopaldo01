@@ -33,7 +33,6 @@ public class Cliente {
         }
         //Se verifica que se haya enviado algun parametro
         if (!"".equals(parametro)) {
-            System.out.println("entro");
             //Verificamos si es una busqueda de todos los clientes 
             if (esTodos) {
                 consulta = consulta + " where "; //si son toddos

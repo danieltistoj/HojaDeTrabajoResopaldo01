@@ -15,13 +15,14 @@ import javax.swing.JLabel;
  */
 public class Reloj implements Runnable {
 
-    String hora, minuto, segundo, AmPm;
-    JLabel labelReloj;
+    String hora, minuto, segundo, AmPm, year,month,day;
+    JLabel labelReloj, labelFecha;
     Calendar calendario;
     public Thread hilo1;
 
-    public Reloj(JLabel labelReloj) {
+    public Reloj(JLabel labelReloj,JLabel labelFecha) {
         this.labelReloj = labelReloj;
+        this.labelFecha = labelFecha;
         hilo1 = new Thread(this);
     }
 
@@ -41,6 +42,7 @@ public class Reloj implements Runnable {
        while(true){
             calcula();
             labelReloj.setText(hora + ":" + minuto + ":" + segundo + " " + AmPm);
+            labelFecha.setText(day+" / "+month+" / "+year);
             //labelReloj.setText(hora + ":" + minuto + ":" + segundo);
             try {
                 Thread.sleep(1000);
@@ -58,7 +60,7 @@ public class Reloj implements Runnable {
 
         calendario.setTime(fechaHoraActual);
         AmPm = calendario.get(Calendar.AM_PM) == Calendar.AM ? "AM" : "PM";
-
+        /*Hora*/
         if (AmPm.equals("PM")) {
             int h = calendario.get(Calendar.HOUR_OF_DAY) - 12;
             hora = h > 9 ? "" + h : "0" + h;
@@ -67,7 +69,10 @@ public class Reloj implements Runnable {
         }
         minuto = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
         segundo = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
-        
+        /*Fecha*/
+        year  = calendario.get(Calendar.YEAR)+"";
+        month = calendario.get(Calendar.MONTH)+"";
+        day   = calendario.get(Calendar.DAY_OF_MONTH)+"";
      /*
      hora = fechaHoraActual.getHours()>9?""+fechaHoraActual.getHours():"0"+fechaHoraActual.getHours();
      minuto = fechaHoraActual.getMinutes()>9?""+fechaHoraActual.getMinutes():"0"+fechaHoraActual.getMinutes();

@@ -14,7 +14,7 @@ import conexionbase.ConexionMySQL;
  */
 public class VariableLocal {
     public ConexionMySQL conexionMySQL ;
-
+    
     public VariableLocal() {
         conexionMySQL = new ConexionMySQL("3305","hoja2base2","root","xela2020");
     }
