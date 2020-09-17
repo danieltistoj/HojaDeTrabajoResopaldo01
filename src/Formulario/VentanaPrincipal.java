@@ -48,6 +48,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.txtHora.setEnabled(false);
         this.txtMinutos.setEnabled(false);
         this.txtSegundos.setEnabled(false);
+        
+        this.btnAceptarHora.setEnabled(false);
+        this.btnCancelarProgramacion.setEnabled(false);
     }
 
     /**
@@ -113,6 +116,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        btnCancelarProgramacion = new javax.swing.JButton();
+        txtRutaExportacionP = new javax.swing.JTextField();
+        pnlBuscarArchivoExP = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
         PnlCliente = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCliente = new javax.swing.JTable();
@@ -701,23 +708,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(143, 143, 143))
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addComponent(txtRutaImp, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlBuscarArchivoImp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(59, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(txtRutaImp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(pnlBuscarArchivoImp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                    .addComponent(txtRutaImp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlBuscarArchivoImp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnImportar)
                 .addGap(25, 25, 25))
         );
@@ -779,6 +783,59 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("Segundo");
 
+        btnCancelarProgramacion.setBackground(new java.awt.Color(19, 59, 92));
+        btnCancelarProgramacion.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelarProgramacion.setText("Cancelar");
+        btnCancelarProgramacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelarProgramacionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCancelarProgramacionMouseExited(evt);
+            }
+        });
+        btnCancelarProgramacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarProgramacionActionPerformed(evt);
+            }
+        });
+
+        txtRutaExportacionP.setBackground(new java.awt.Color(60, 63, 65));
+        txtRutaExportacionP.setForeground(new java.awt.Color(255, 255, 255));
+
+        pnlBuscarArchivoExP.setBackground(new java.awt.Color(29, 45, 80));
+        pnlBuscarArchivoExP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlBuscarArchivoExPClickRespaldo(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pnlBuscarArchivoExPEntraRespaldo(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pnlBuscarArchivoExPSaleRespaldo(evt);
+            }
+        });
+
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/File_Explorer_23583.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnlBuscarArchivoExPLayout = new javax.swing.GroupLayout(pnlBuscarArchivoExP);
+        pnlBuscarArchivoExP.setLayout(pnlBuscarArchivoExPLayout);
+        pnlBuscarArchivoExPLayout.setHorizontalGroup(
+            pnlBuscarArchivoExPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBuscarArchivoExPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
+        );
+        pnlBuscarArchivoExPLayout.setVerticalGroup(
+            pnlBuscarArchivoExPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBuscarArchivoExPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -788,10 +845,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(btnEditarHora)
-                        .addGap(64, 64, 64)
-                        .addComponent(btnAceptarHora, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                        .addGap(76, 76, 76))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAceptarHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelarProgramacion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtHora)
                             .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
@@ -804,6 +863,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(txtSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel21))
                         .addGap(16, 16, 16))))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(txtRutaExportacionP, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlBuscarArchivoExP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 14, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -818,10 +883,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(txtMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSegundos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(47, 47, 47)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtRutaExportacionP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlBuscarArchivoExP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditarHora)
-                    .addComponent(btnAceptarHora, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAceptarHora, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelarProgramacion))
                 .addGap(15, 15, 15))
         );
 
@@ -834,27 +904,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlRespaldoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(7, Short.MAX_VALUE)
                 .addGroup(PnlRespaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlRespaldoLayout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlRespaldoLayout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(183, 183, 183))))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         PnlRespaldoLayout.setVerticalGroup(
             PnlRespaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnlRespaldoLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(PnlRespaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(27, 27, 27)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+                .addGroup(PnlRespaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PnlRespaldoLayout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1235,12 +1303,44 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             System.out.println("Entro");
         }
         if (evt.getSource() == btnEditarHora) {
-            System.out.println("Entro");
+            btnEditarHora.setEnabled(false);
+            btnAceptarHora.setEnabled(true);
+            btnCancelarProgramacion.setEnabled(true);
+            
+            txtHora.setEnabled(true);
+            txtMinutos.setEnabled(true);
+            txtSegundos.setEnabled(true);
         }
-        if (evt.getSource() == btnAceptarHora) {
-            System.out.println("Entro");
+        if (evt.getSource() == btnAceptarHora) {//Accion del boton aceptar programacion de exportacion
+            
         }
     }//GEN-LAST:event_ClickRespaldo
+
+    private void btnCancelarProgramacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProgramacionActionPerformed
+            btnEditarHora.setEnabled(true);
+            btnAceptarHora.setEnabled(false);
+            btnCancelarProgramacion.setEnabled(false);
+    }//GEN-LAST:event_btnCancelarProgramacionActionPerformed
+
+    private void pnlBuscarArchivoExPClickRespaldo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBuscarArchivoExPClickRespaldo
+        
+    }//GEN-LAST:event_pnlBuscarArchivoExPClickRespaldo
+
+    private void pnlBuscarArchivoExPEntraRespaldo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBuscarArchivoExPEntraRespaldo
+       pnlBuscarArchivoExP.setBackground(new Color(252, 218, 183));
+    }//GEN-LAST:event_pnlBuscarArchivoExPEntraRespaldo
+
+    private void pnlBuscarArchivoExPSaleRespaldo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBuscarArchivoExPSaleRespaldo
+        pnlBuscarArchivoExP.setBackground(new Color(29, 45, 80));
+    }//GEN-LAST:event_pnlBuscarArchivoExPSaleRespaldo
+
+    private void btnCancelarProgramacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarProgramacionMouseEntered
+       btnCancelarProgramacion.setBackground(new Color(252, 218, 183));
+    }//GEN-LAST:event_btnCancelarProgramacionMouseEntered
+
+    private void btnCancelarProgramacionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarProgramacionMouseExited
+     btnCancelarProgramacion.setBackground(new Color(19, 59, 92));
+    }//GEN-LAST:event_btnCancelarProgramacionMouseExited
 
     /**
      * @param args the command line arguments
@@ -1287,6 +1387,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptarHora;
     private javax.swing.JPanel btnBuscarCliente;
     private javax.swing.JPanel btnBuscarProducto;
+    private javax.swing.JButton btnCancelarProgramacion;
     private javax.swing.JPanel btnCliente;
     private javax.swing.JButton btnEditarHora;
     private javax.swing.JButton btnExportar;
@@ -1311,6 +1412,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1334,6 +1436,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel labelReloj;
     private javax.swing.JPanel panelCerrarVentana;
     private javax.swing.JPanel panelMinimizarVentana;
+    private javax.swing.JPanel pnlBuscarArchivoExP;
     private javax.swing.JPanel pnlBuscarArchivoExp;
     private javax.swing.JPanel pnlBuscarArchivoImp;
     private javax.swing.JTable tablaCliente;
@@ -1343,6 +1446,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtHora;
     private javax.swing.JTextField txtMinutos;
     private javax.swing.JTextField txtRutaExp;
+    private javax.swing.JTextField txtRutaExportacionP;
     private javax.swing.JTextField txtRutaImp;
     private javax.swing.JTextField txtSegundos;
     // End of variables declaration//GEN-END:variables
