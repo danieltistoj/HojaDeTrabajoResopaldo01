@@ -26,6 +26,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Producto producto;
     private Reloj reloj;
     private Exportar exportar;
+    private Fichero fichero;
 
     public VentanaPrincipal() {
         //quita los botones de cerrar y minimizar
@@ -36,10 +37,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         PlaceHolderCliente = new TextPrompt("Buscar Cliente", txtBuscarCliente);
         PlaceHolderProducto = new TextPrompt("Buscar Producto", txtBuscarProducto);
-        conexion = new VariableLocal();
+        
+        fichero = new Fichero();//Iniciomos el fichero
+        conexion = new VariableLocal(fichero.getBaseDatos());
         cliente = new Cliente();
         producto = new Producto();
-        exportar = new Exportar(conexion.getContra(),conexion.getUsuario(),conexion.getBaseDatos());
+        exportar = new Exportar(conexion.getContra(),conexion.getUsuario(),conexion.getBaseDatos());//la exportacion debe de tener los datos del usuario
         reloj = new Reloj(labelReloj, labelFecha); //Instanciamos el reloj
         reloj.hilo1.start();//Lo encendemos
         

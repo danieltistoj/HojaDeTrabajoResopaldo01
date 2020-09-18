@@ -19,7 +19,7 @@ public class Exportar {
         this.usuario = usuario;
         this.contra = contra;
         this.baseDatos = baseDatos;
-        this.nombreRespaldo = "\\hoja2base2.sql";
+        this.nombreRespaldo = "\\baseRespaldo.sql";
     }
     public void ExportarBase(){
         if(ruta.length()!=0){

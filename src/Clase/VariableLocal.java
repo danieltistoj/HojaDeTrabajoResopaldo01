@@ -16,9 +16,9 @@ public class VariableLocal {
     public ConexionMySQL conexionMySQL;
     private String puerto, usuario, contra, baseDatos;
 
-    public VariableLocal() {
-        conexionMySQL = new ConexionMySQL("3305", "hoja2base2", "root", "xela2020");
-        this.baseDatos = "hoja2base2";
+    public VariableLocal(String base) {
+        conexionMySQL = new ConexionMySQL("3305",base, "root", "xela2020");
+        this.baseDatos = base;
         this.usuario = "root";
         this.contra = "xela2020";
         this.puerto = "3305";
