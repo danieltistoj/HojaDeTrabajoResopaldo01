@@ -38,25 +38,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         PlaceHolderCliente = new TextPrompt("Buscar Cliente", txtBuscarCliente);
         PlaceHolderProducto = new TextPrompt("Buscar Producto", txtBuscarProducto);
-        
+
         fichero = new Fichero();//Iniciomos el fichero
         conexion = new VariableLocal(fichero.getBaseDatos());
         cliente = new Cliente();
         producto = new Producto();
-        exportar = new Exportar(conexion.getContra(),conexion.getUsuario(),conexion.getBaseDatos());//la exportacion debe de tener los datos del usuario
+        exportar = new Exportar(conexion.getContra(), conexion.getUsuario(), conexion.getBaseDatos());//la exportacion debe de tener los datos del usuario
         reloj = new Reloj(labelReloj, labelFecha); //Instanciamos el reloj
         reloj.hilo1.start();//Lo encendemos
-        
+
         this.txtRutaExp.setEnabled(false);
         this.txtRutaImp.setEnabled(false);
         this.txtHoraExportacion.setEnabled(false);
         this.txtRutaExportacionP.setEnabled(false);
-        
+
         this.txtHoraExportacion.setText(fichero.getHoraEjecucion());
         this.txtRutaExportacionP.setText(fichero.getRutaExportar());
-        
+
         dialogHora.setTitle("Hora de exportacion");
-        dialogHora.setSize(480,420);
+        dialogHora.setSize(480, 510);
         dialogHora.setLocationRelativeTo(null);
         //dialogHora.setAlwaysOnTop(true);
     }
@@ -84,6 +84,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         btnDialogAceptar = new javax.swing.JButton();
         btnDialogCancelar = new javax.swing.JButton();
+        grupoBotones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         PnlSuperior = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -138,6 +139,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtHoraExportacion = new javax.swing.JTextField();
         btnEditorModi = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
+        btnLimpiarHora = new javax.swing.JButton();
+        btnLimpiarRuta = new javax.swing.JButton();
         PnlCliente = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCliente = new javax.swing.JTable();
@@ -169,8 +172,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Segundo");
 
+        radioAM.setBackground(new java.awt.Color(19, 59, 92));
+        grupoBotones.add(radioAM);
+        radioAM.setForeground(new java.awt.Color(255, 255, 255));
         radioAM.setText("AM");
+        radioAM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioAMActionPerformed(evt);
+            }
+        });
 
+        radioPM.setBackground(new java.awt.Color(19, 59, 92));
+        grupoBotones.add(radioPM);
+        radioPM.setForeground(new java.awt.Color(255, 255, 255));
         radioPM.setText("PM");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -178,7 +192,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(120, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,10 +210,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel23)
                         .addGap(158, 158, 158))))
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(radioAM, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(radioPM, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101)
+                .addComponent(radioAM, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(radioPM, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
@@ -217,11 +231,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtDialogSegundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radioAM)
-                    .addComponent(radioPM))
-                .addGap(30, 30, 30))
+                    .addComponent(radioPM, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioAM, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
         );
 
         jPanel12.setBackground(new java.awt.Color(29, 45, 80));
@@ -291,7 +305,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,7 +325,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         dialogHoraLayout.setVerticalGroup(
             dialogHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogHoraLayout.createSequentialGroup()
+                .addGap(0, 23, Short.MAX_VALUE)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1012,6 +1028,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("Hora de exportacion");
 
+        btnLimpiarHora.setBackground(new java.awt.Color(19, 59, 92));
+        btnLimpiarHora.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiarHora.setText("Limpiar");
+        btnLimpiarHora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLimpiarRutaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLimpiarRutaMouseExited(evt);
+            }
+        });
+
+        btnLimpiarRuta.setBackground(new java.awt.Color(19, 59, 92));
+        btnLimpiarRuta.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiarRuta.setText("Limpiar");
+        btnLimpiarRuta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLimpiarRutaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLimpiarRutaMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -1023,7 +1063,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEditorModi, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiarRuta)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(btnEditorModi, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpiarHora))
                     .addComponent(txtHoraExportacion, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(txtRutaExportacionP, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1039,12 +1083,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtHoraExportacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEditorModi)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEditorModi)
+                    .addComponent(btnLimpiarHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addComponent(txtRutaExportacionP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(98, 98, 98))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLimpiarRuta)
+                        .addGap(54, 54, 54))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addComponent(pnlBuscarArchivoExP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(87, 87, 87))))
@@ -1072,11 +1120,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(PnlRespaldoLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(PnlRespaldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PnlRespaldoLayout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1404,7 +1452,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (evt.getSource() == btnImportar) {
             btnImportar.setBackground(new Color(252, 218, 183));
         }
-        
+
     }//GEN-LAST:event_EntraRespaldo
 
     private void SaleRespaldo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaleRespaldo
@@ -1421,7 +1469,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (evt.getSource() == btnImportar) {
             btnImportar.setBackground(new Color(19, 59, 92));
         }
-     
+
     }//GEN-LAST:event_SaleRespaldo
 
     private void ClickRespaldo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClickRespaldo
@@ -1429,43 +1477,42 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             JFileChooser ch = new JFileChooser();
             ch.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             int se = ch.showSaveDialog(null);
-            if(se == JFileChooser.APPROVE_OPTION){
-             String ruta = ch.getSelectedFile().getPath();
-             txtRutaExp.setText(ruta);
+            if (se == JFileChooser.APPROVE_OPTION) {
+                String ruta = ch.getSelectedFile().getPath();
+                txtRutaExp.setText(ruta);
             }
 
         }
         if (evt.getSource() == pnlBuscarArchivoImp) {
-            
+
         }
         if (evt.getSource() == btnExportar) {
-            if(txtRutaExp.getText().length()!=0){
+            if (txtRutaExp.getText().length() != 0) {
                 exportar.setRuta(txtRutaExp.getText());
                 exportar.ExportarBase();
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"Seleccione un archivo","Error",JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione un archivo", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         if (evt.getSource() == btnImportar) {
             System.out.println("Entro");
         }
-       
+
     }//GEN-LAST:event_ClickRespaldo
 
     private void pnlBuscarArchivoExPClickRespaldo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBuscarArchivoExPClickRespaldo
-            JFileChooser ch = new JFileChooser();
-            ch.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            int se = ch.showSaveDialog(null);
-            if(se == JFileChooser.APPROVE_OPTION){
-             String ruta = ch.getSelectedFile().getPath();
-             txtRutaExportacionP.setText(ruta);
-             fichero.setFicheroRuta(ruta);
-            }
+        JFileChooser ch = new JFileChooser();
+        ch.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int se = ch.showSaveDialog(null);
+        if (se == JFileChooser.APPROVE_OPTION) {
+            String ruta = ch.getSelectedFile().getPath();
+            txtRutaExportacionP.setText(ruta);
+            fichero.setFicheroRuta(ruta);
+        }
     }//GEN-LAST:event_pnlBuscarArchivoExPClickRespaldo
 
     private void pnlBuscarArchivoExPEntraRespaldo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBuscarArchivoExPEntraRespaldo
-       pnlBuscarArchivoExP.setBackground(new Color(252, 218, 183));
+        pnlBuscarArchivoExP.setBackground(new Color(252, 218, 183));
     }//GEN-LAST:event_pnlBuscarArchivoExPEntraRespaldo
 
     private void pnlBuscarArchivoExPSaleRespaldo(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBuscarArchivoExPSaleRespaldo
@@ -1473,7 +1520,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlBuscarArchivoExPSaleRespaldo
 
     private void btnEditorModiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditorModiActionPerformed
-      dialogHora.setVisible(true);
+        dialogHora.setVisible(true);
     }//GEN-LAST:event_btnEditorModiActionPerformed
 
     private void btnEditorModiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditorModiMouseEntered
@@ -1481,68 +1528,83 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditorModiMouseEntered
 
     private void btnEditorModiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditorModiMouseExited
-      btnEditorModi.setBackground(new Color(19, 59, 92));
+        btnEditorModi.setBackground(new Color(19, 59, 92));
     }//GEN-LAST:event_btnEditorModiMouseExited
 
     private void btnDialogEntra(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDialogEntra
-        if(evt.getSource() == btnDialogAceptar){
+        if (evt.getSource() == btnDialogAceptar) {
             btnDialogAceptar.setBackground(new Color(252, 218, 183));
         }
-        if(evt.getSource() == btnDialogCancelar){
+        if (evt.getSource() == btnDialogCancelar) {
             btnDialogCancelar.setBackground(new Color(252, 218, 183));
         }
     }//GEN-LAST:event_btnDialogEntra
 
     private void btnDialogSale(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDialogSale
-        if(evt.getSource() == btnDialogAceptar){
+        if (evt.getSource() == btnDialogAceptar) {
             btnDialogAceptar.setBackground(new Color(19, 59, 92));
         }
-        if(evt.getSource() == btnDialogCancelar){
+        if (evt.getSource() == btnDialogCancelar) {
             btnDialogCancelar.setBackground(new Color(19, 59, 92));
         }
     }//GEN-LAST:event_btnDialogSale
 
     private void btnDialogAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDialogAceptarActionPerformed
-       int hora, minuto, segundo;
-       String horaC, minutoC, segundoC,horaExportacion = "", AmPm;
-        if(txtDialogHora.getText().length()!=0 && txtDialogMinuto.getText().length() != 0 && txtDialogSegundo.getText().length() != 0){
+        int hora, minuto, segundo;
+        String horaC, minutoC, segundoC, horaExportacion = "", AmPm = "";
+        if (txtDialogHora.getText().length() != 0 && txtDialogMinuto.getText().length() != 0 && txtDialogSegundo.getText().length() != 0) {
             try {
                 hora = Integer.parseInt(txtDialogHora.getText());
                 minuto = Integer.parseInt(txtDialogMinuto.getText());
                 segundo = Integer.parseInt(txtDialogSegundo.getText());
-                if(hora>=0 && hora<=12){
-                    if(minuto>=0 && minuto<=59){
-                         if(segundo>=0 && segundo<=59){
-                             horaC = hora>9?""+hora:"0"+hora;
-                             minutoC = minuto>9?""+minuto:"0"+minuto;
-                             segundoC = segundo>9?""+segundo:"0"+segundo;
-                             horaExportacion += horaC+":"+minutoC+":"+segundoC;
-                             
-                               
-                        }
-                        else{
-                            JOptionPane.showMessageDialog(null,"El segundo debe de ser mayor igual a 0"+"\n"+
-                                    "El segundo debe de ser menor o igual 59","Error",JOptionPane.ERROR_MESSAGE);
+                if (hora >= 0 && hora <= 11) { //verificamos que la hora ente en el rago 
+                    if (minuto >= 0 && minuto <= 59) { //verificamos que los minutos esten en el rago
+                        if (segundo >= 0 && segundo <= 59) {// verificamos que los segundos esten en el rago
+                            if (radioAM.isSelected() || radioPM.isSelected()) {
+                                // vemos si los numero son mayores a nueve o no, para concatenarles un cero adelante
+                                horaC = hora > 9 ? "" + hora : "0" + hora;
+                                minutoC = minuto > 9 ? "" + minuto : "0" + minuto;
+                                segundoC = segundo > 9 ? "" + segundo : "0" + segundo;
+                                horaExportacion += horaC + ":" + minutoC + ":" + segundoC;
+
+                                if(radioAM.isSelected()) AmPm = "AM";
+                                if(radioPM.isSelected()) AmPm ="PM";
+     
+                                horaExportacion += " " + AmPm;//concatenamos el meridiano a la hora programada 
+                                JOptionPane.showMessageDialog(null,"El horario de exportacion se modifico: "+horaExportacion);
+                                fichero.setFicheroHora(horaExportacion);//se modifica el fichero del horario de exportacion
+                                txtHoraExportacion.setText(horaExportacion);
+                                
+                                //Limpiar dialog
+                                grupoBotones.clearSelection(); //limpiamos los radio buton
+                                txtDialogHora.setText("");
+                                txtDialogMinuto.setText("");
+                                txtDialogSegundo.setText("");
+                                dialogHora.dispose();
+
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Seleccione un meridiano", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "El segundo debe de ser mayor igual a 0" + "\n"
+                                    + "El segundo debe de ser menor o igual 59", "Error", JOptionPane.ERROR_MESSAGE);
                         }
 
-                        }
-                        else{
-                            JOptionPane.showMessageDialog(null,"El minuto debe de ser mayor igual a 0"+"\n"+
-                                    "La hora debe de ser menor o igual 59","Error",JOptionPane.ERROR_MESSAGE);
-                        }
-
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El minuto debe de ser mayor igual a 0" + "\n"
+                                + "La hora debe de ser menor o igual 59", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                else{
-                    JOptionPane.showMessageDialog(null,"La hora debe de ser mayor igual a 0"+"\n"+
-                            "La hora debe de ser menor o igual 12","Error",JOptionPane.ERROR_MESSAGE);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "La hora debe de ser mayor igual a 0" + "\n"
+                            + "La hora debe de ser menor o igual 11", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null,"Ingree solo digitos","Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Ingree solo digitos", "Error", JOptionPane.ERROR_MESSAGE);
             }
-       }
-       else{
-           JOptionPane.showMessageDialog(null,"Llene todos los campos","Error",JOptionPane.ERROR_MESSAGE);
-       }
+        } else {
+            JOptionPane.showMessageDialog(null, "Llene todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnDialogAceptarActionPerformed
 
     private void btnDialogCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDialogCancelarActionPerformed
@@ -1553,7 +1615,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDialogCancelarActionPerformed
 
     private void pnlModificarBaseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlModificarBaseMouseEntered
-         pnlModificarBase.setBackground(new Color(252, 218, 183));
+        pnlModificarBase.setBackground(new Color(252, 218, 183));
     }//GEN-LAST:event_pnlModificarBaseMouseEntered
 
     private void pnlModificarBaseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlModificarBaseMouseExited
@@ -1563,6 +1625,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void pnlModificarBaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlModificarBaseMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_pnlModificarBaseMouseClicked
+
+    private void radioAMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioAMActionPerformed
+
+    private void btnLimpiarRutaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarRutaMouseEntered
+        if(evt.getSource() == btnLimpiarHora){
+            b
+        }
+        if(evt.getSource() == btnLimpiarRuta){
+            
+        }
+    }//GEN-LAST:event_btnLimpiarRutaMouseEntered
+
+    private void btnLimpiarRutaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarRutaMouseExited
+        if(evt.getSource() == btnLimpiarHora){
+            
+        }
+        if(evt.getSource() == btnLimpiarRuta){
+            
+        }
+    }//GEN-LAST:event_btnLimpiarRutaMouseExited
 
     /**
      * @param args the command line arguments
@@ -1614,6 +1698,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnEditorModi;
     private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnImportar;
+    private javax.swing.JButton btnLimpiarHora;
+    private javax.swing.JButton btnLimpiarRuta;
     private javax.swing.JPanel btnProducto;
     private javax.swing.JPanel btnRespaldo;
     private javax.swing.JComboBox<String> comboForma;
@@ -1621,6 +1707,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboOrdenProducto;
     private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JDialog dialogHora;
+    private javax.swing.ButtonGroup grupoBotones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
