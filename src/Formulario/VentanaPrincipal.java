@@ -9,6 +9,7 @@ import java.awt.Color;
 import Clase.*;
 import java.awt.Frame;
 import java.util.Date;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -53,6 +54,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         this.txtHoraExportacion.setText(fichero.getHoraEjecucion());
         this.txtRutaExportacionP.setText(fichero.getRutaExportar());
+        
+        dialogHora.setTitle("Hora de exportacion");
+        dialogHora.setSize(480,420);
+        dialogHora.setLocationRelativeTo(null);
+        //dialogHora.setAlwaysOnTop(true);
     }
 
     /**
@@ -217,6 +223,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 btnDialogSale(evt);
             }
         });
+        btnDialogAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDialogAceptarActionPerformed(evt);
+            }
+        });
 
         btnDialogCancelar.setBackground(new java.awt.Color(19, 59, 92));
         btnDialogCancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -227,6 +238,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnDialogSale(evt);
+            }
+        });
+        btnDialogCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDialogCancelarActionPerformed(evt);
             }
         });
 
@@ -1404,7 +1420,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlBuscarArchivoExPSaleRespaldo
 
     private void btnEditorModiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditorModiActionPerformed
-        
+      dialogHora.setVisible(true);
     }//GEN-LAST:event_btnEditorModiActionPerformed
 
     private void btnEditorModiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditorModiMouseEntered
@@ -1432,6 +1448,56 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             btnDialogCancelar.setBackground(new Color(19, 59, 92));
         }
     }//GEN-LAST:event_btnDialogSale
+
+    private void btnDialogAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDialogAceptarActionPerformed
+       int hora, minuto, segundo;
+       String horaC, minutoC, segundoC,horaExportacion = "", AmPm;
+        if(txtDialogHora.getText().length()!=0 && txtDialogMinuto.getText().length() != 0 && txtDialogSegundo.getText().length() != 0){
+            try {
+                hora = Integer.parseInt(txtDialogHora.getText());
+                minuto = Integer.parseInt(txtDialogMinuto.getText());
+                segundo = Integer.parseInt(txtDialogSegundo.getText());
+                if(hora>=0 && hora<=23){
+                    if(minuto>=0 && minuto<=59){
+                         if(segundo>=0 && segundo<=59){
+                             horaC = hora>9?""+hora:"0"+hora;
+                             minutoC = minuto>9?""+minuto:"0"+minuto;
+                             segundoC = segundo>9?""+segundo:"0"+segundo;
+                             horaExportacion += horaC+":"+minutoC+":"+segundoC;
+                             System.out.println(horaExportacion);
+                               
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null,"El segundo debe de ser mayor igual a 0"+"\n"+
+                                    "El segundo debe de ser menor o igual 59","Error",JOptionPane.ERROR_MESSAGE);
+                        }
+
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null,"El minuto debe de ser mayor igual a 0"+"\n"+
+                                    "La hora debe de ser menor o igual 59","Error",JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    }
+                else{
+                    JOptionPane.showMessageDialog(null,"La hora debe de ser mayor igual a 0"+"\n"+
+                            "La hora debe de ser menor o igual 23","Error",JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"Ingree solo digitos","Error",JOptionPane.ERROR_MESSAGE);
+            }
+       }
+       else{
+           JOptionPane.showMessageDialog(null,"Llene todos los campos","Error",JOptionPane.ERROR_MESSAGE);
+       }
+    }//GEN-LAST:event_btnDialogAceptarActionPerformed
+
+    private void btnDialogCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDialogCancelarActionPerformed
+        dialogHora.dispose();
+        txtDialogHora.setText("");
+        txtDialogMinuto.setText("");
+        txtDialogSegundo.setText("");
+    }//GEN-LAST:event_btnDialogCancelarActionPerformed
 
     /**
      * @param args the command line arguments
