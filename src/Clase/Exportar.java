@@ -25,6 +25,7 @@ public class Exportar {
         if(ruta.length()!=0){
             try {
                 comando = "mysqldump --opt -u "+usuario+" -p"+contra+" -B "+baseDatos+" -r "+ruta+nombreRespaldo;
+                System.out.println(comando);
                 Runtime rt = Runtime.getRuntime();
                 rt.exec(comando);
                 JOptionPane.showMessageDialog(null,"Se exporto el archivo","Mensaje",JOptionPane.INFORMATION_MESSAGE);

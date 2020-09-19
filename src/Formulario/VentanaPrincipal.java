@@ -8,6 +8,7 @@ package Formulario;
 import java.awt.Color;
 import Clase.*;
 import java.awt.Frame;
+import java.sql.ResultSet;
 import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -28,6 +29,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Producto producto;
     private Reloj reloj;
     private Exportar exportar;
+    private Importar importar;
     private Fichero fichero;
 
     public VentanaPrincipal() {
@@ -46,6 +48,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         producto = new Producto();
 
         exportar = new Exportar(conexion.getContra(), conexion.getUsuario(), conexion.getBaseDatos());//la exportacion debe de tener los datos del usuario
+        importar = new Importar(conexion.getContra(), conexion.getUsuario());
         reloj = new Reloj(labelReloj, labelFecha, exportar); //Instanciamos el reloj
         reloj.hilo1.start();//Lo encendemos
 
@@ -1510,7 +1513,38 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Seleccione un archivo", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        if (evt.getSource() == btnImportar) {
+        if (evt.getSource() == btnImportar) {//boton para importar una base de datos
+            ResultSet rs;
+            boolean existe = false;
+            if (!"".equals(txtRutaImp.getText())) {
+                String respuesta = JOptionPane.showInputDialog("Escriba el nombre de la base de datos");
+                if (respuesta != null) {
+                    if (respuesta.length() != 0 && !"".equals(respuesta)) {
+                        conexion.conexionMySQL.EjecutarConsulta("show databases");
+                        rs = conexion.conexionMySQL.getResultSet();
+                        try {
+                            while (rs.next()) {
+                                if (respuesta.equals(rs.getString("Database"))) {
+                                    existe = true;
+                                }
+                            }
+                            if (existe) {
+                                JOptionPane.showMessageDialog(null, "La base de datos ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+                            } else {
+                                conexion.conexionMySQL.EjecutarInstruccion("create database "+respuesta);
+                                importar.setRuta(txtRutaImp.getText());
+                                importar.setBaseDatos(respuesta);
+                                importar.ImportarBase();
+                            }
+                        } catch (Exception e) {
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ingrese un nombre para la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese un archivo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
 
         }
 
