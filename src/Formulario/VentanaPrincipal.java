@@ -1638,6 +1638,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 txtDialogHora.setText("");
                                 txtDialogMinuto.setText("");
                                 txtDialogSegundo.setText("");
+                                JOptionPane.showMessageDialog(null,"La base de datos se guardara con el nombre por defecto: "+"baseRespaldo.sql");
                                 dialogHora.dispose();
 
                             } else {
