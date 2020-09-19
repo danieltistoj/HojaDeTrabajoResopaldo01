@@ -7,6 +7,9 @@ package Clase;
 
 import java.util.*;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+import analizador.de.cadenas.AnalizadorCadena;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -17,12 +20,16 @@ public class Reloj implements Runnable {
 
     String hora, minuto, segundo, AmPm, year,month,day;
     JLabel labelReloj, labelFecha;
+    Fichero fichero;
+    Exportar exportar;
     Calendar calendario;
     public Thread hilo1;
 
-    public Reloj(JLabel labelReloj,JLabel labelFecha) {
+    public Reloj(JLabel labelReloj,JLabel labelFecha,Exportar exportar) {
         this.labelReloj = labelReloj;
         this.labelFecha = labelFecha;
+        this.fichero = new Fichero();
+        this.exportar = exportar;
         hilo1 = new Thread(this);
     }
 
@@ -43,7 +50,14 @@ public class Reloj implements Runnable {
             calcula();
             labelReloj.setText(hora + ":" + minuto + ":" + segundo + " " + AmPm);
             labelFecha.setText(day+" / "+month+" / "+year);
-            //labelReloj.setText(hora + ":" + minuto + ":" + segundo);
+            fichero = new Fichero();
+           
+            if(fichero.getHoraEjecucion().length()!=0 && fichero.getRutaExportar().length()!=0){
+                if(labelReloj.getText().equals(fichero.getHoraEjecucion())){
+                 exportar.setRuta(fichero.getRutaExportar());
+                 exportar.ExportarBase();
+            } 
+            }
             try {
                 Thread.sleep(1000);
             } catch (Exception e) {

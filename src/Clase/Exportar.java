@@ -37,6 +37,6 @@ public class Exportar {
     public void setRuta(String ruta) {
         this.ruta = ruta;
     }
-
+   
     
 }

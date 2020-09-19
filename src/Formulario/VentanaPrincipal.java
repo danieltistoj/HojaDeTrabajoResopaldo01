@@ -12,6 +12,7 @@ import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -43,8 +44,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         conexion = new VariableLocal(fichero.getBaseDatos());
         cliente = new Cliente();
         producto = new Producto();
+
         exportar = new Exportar(conexion.getContra(), conexion.getUsuario(), conexion.getBaseDatos());//la exportacion debe de tener los datos del usuario
-        reloj = new Reloj(labelReloj, labelFecha); //Instanciamos el reloj
+        reloj = new Reloj(labelReloj, labelFecha, exportar); //Instanciamos el reloj
         reloj.hilo1.start();//Lo encendemos
 
         this.txtRutaExp.setEnabled(false);
@@ -1032,6 +1034,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnLimpiarHora.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiarHora.setText("Limpiar");
         btnLimpiarHora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLimpiarRutaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnLimpiarRutaMouseEntered(evt);
             }
@@ -1044,6 +1049,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnLimpiarRuta.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiarRuta.setText("Limpiar");
         btnLimpiarRuta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLimpiarRutaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnLimpiarRutaMouseEntered(evt);
             }
@@ -1484,7 +1492,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         }
         if (evt.getSource() == pnlBuscarArchivoImp) {
+            JFileChooser ch = new JFileChooser();
+            FileNameExtensionFilter file = new FileNameExtensionFilter("SQL", "sql");
+            ch.setFileFilter(file);
 
+            int se = ch.showOpenDialog(null);
+            if (se == JFileChooser.APPROVE_OPTION) {
+                String ruta = ch.getSelectedFile().getPath();
+                txtRutaImp.setText(ruta);
+            }
         }
         if (evt.getSource() == btnExportar) {
             if (txtRutaExp.getText().length() != 0) {
@@ -1495,7 +1511,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         }
         if (evt.getSource() == btnImportar) {
-            System.out.println("Entro");
+
         }
 
     }//GEN-LAST:event_ClickRespaldo
@@ -1567,14 +1583,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 segundoC = segundo > 9 ? "" + segundo : "0" + segundo;
                                 horaExportacion += horaC + ":" + minutoC + ":" + segundoC;
 
-                                if(radioAM.isSelected()) AmPm = "AM";
-                                if(radioPM.isSelected()) AmPm ="PM";
-     
+                                if (radioAM.isSelected()) {
+                                    AmPm = "AM";
+                                }
+                                if (radioPM.isSelected()) {
+                                    AmPm = "PM";
+                                }
+
                                 horaExportacion += " " + AmPm;//concatenamos el meridiano a la hora programada 
-                                JOptionPane.showMessageDialog(null,"El horario de exportacion se modifico: "+horaExportacion);
+                                JOptionPane.showMessageDialog(null, "El horario de exportacion se modifico: " + horaExportacion);
                                 fichero.setFicheroHora(horaExportacion);//se modifica el fichero del horario de exportacion
                                 txtHoraExportacion.setText(horaExportacion);
-                                
+
                                 //Limpiar dialog
                                 grupoBotones.clearSelection(); //limpiamos los radio buton
                                 txtDialogHora.setText("");
@@ -1631,22 +1651,33 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_radioAMActionPerformed
 
     private void btnLimpiarRutaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarRutaMouseEntered
-        if(evt.getSource() == btnLimpiarHora){
-            b
+        if (evt.getSource() == btnLimpiarHora) {
+            btnLimpiarHora.setBackground(new Color(252, 218, 183));
         }
-        if(evt.getSource() == btnLimpiarRuta){
-            
+        if (evt.getSource() == btnLimpiarRuta) {
+            btnLimpiarRuta.setBackground(new Color(252, 218, 183));
         }
     }//GEN-LAST:event_btnLimpiarRutaMouseEntered
 
     private void btnLimpiarRutaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarRutaMouseExited
-        if(evt.getSource() == btnLimpiarHora){
-            
+        if (evt.getSource() == btnLimpiarHora) {
+            btnLimpiarHora.setBackground(new Color(19, 59, 92));
         }
-        if(evt.getSource() == btnLimpiarRuta){
-            
+        if (evt.getSource() == btnLimpiarRuta) {
+            btnLimpiarRuta.setBackground(new Color(19, 59, 92));
         }
     }//GEN-LAST:event_btnLimpiarRutaMouseExited
+
+    private void btnLimpiarRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarRutaMouseClicked
+        if (evt.getSource() == btnLimpiarHora) {
+            fichero.setFicheroHora("");
+            txtHoraExportacion.setText("");
+        }
+        if (evt.getSource() == btnLimpiarRuta) {
+            fichero.setFicheroRuta("");
+            txtRutaExportacionP.setText("");
+        }
+    }//GEN-LAST:event_btnLimpiarRutaMouseClicked
 
     /**
      * @param args the command line arguments
