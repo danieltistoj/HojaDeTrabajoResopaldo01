@@ -1517,24 +1517,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             ResultSet rs;
             boolean existe = false;
             if (!"".equals(txtRutaImp.getText())) {
-                String respuesta = JOptionPane.showInputDialog("Escriba el nombre de la base de datos");
-                if (respuesta != null) {
-                    if (respuesta.length() != 0 && !"".equals(respuesta)) {
+                String NuevaBase = JOptionPane.showInputDialog("Escriba el nombre de la base de datos");
+                if (NuevaBase != null) {
+                    if (NuevaBase.length() != 0 && !"".equals(NuevaBase)) {
                         conexion.conexionMySQL.EjecutarConsulta("show databases");
                         rs = conexion.conexionMySQL.getResultSet();
                         try {
                             while (rs.next()) {
-                                if (respuesta.equals(rs.getString("Database"))) {
+                                if (NuevaBase.equals(rs.getString("Database"))) {
                                     existe = true;
                                 }
                             }
                             if (existe) {
                                 JOptionPane.showMessageDialog(null, "La base de datos ya existe", "Error", JOptionPane.ERROR_MESSAGE);
                             } else {
-                                conexion.conexionMySQL.EjecutarInstruccion("create database "+respuesta);
+                                conexion.conexionMySQL.EjecutarInstruccion("create database "+NuevaBase);
                                 importar.setRuta(txtRutaImp.getText());
-                                importar.setBaseDatos(respuesta);
+                                importar.setBaseDatos(NuevaBase);
                                 importar.ImportarBase();
+                                fichero.setFicheroBase(NuevaBase);
+                                conexion = new VariableLocal(NuevaBase);
+                                txtRutaImp.setText("");
+                                
                             }
                         } catch (Exception e) {
                         }
@@ -1598,7 +1602,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             btnDialogCancelar.setBackground(new Color(19, 59, 92));
         }
     }//GEN-LAST:event_btnDialogSale
-
+//Boton aceptar para definir la hora de exportacion 
     private void btnDialogAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDialogAceptarActionPerformed
         int hora, minuto, segundo;
         String horaC, minutoC, segundoC, horaExportacion = "", AmPm = "";

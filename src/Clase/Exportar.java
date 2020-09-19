@@ -6,6 +6,9 @@
 
 package Clase;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,15 +27,23 @@ public class Exportar {
     public void ExportarBase(){
         if(ruta.length()!=0){
             try {
-                comando = "mysqldump --opt -u "+usuario+" -p"+contra+" -B "+baseDatos+" -r "+ruta+nombreRespaldo;
-                System.out.println(comando);
-                Runtime rt = Runtime.getRuntime();
-                rt.exec(comando);
-                JOptionPane.showMessageDialog(null,"Se exporto el archivo","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null,"Error al exportar","Error",JOptionPane.ERROR_MESSAGE);
+            Process proceso = Runtime.getRuntime().exec("mysqldump -u "+usuario+" -p"+contra+" "+baseDatos);
+            new HiloLector(proceso.getErrorStream()).start();
+            InputStream is = proceso.getInputStream();
+            FileOutputStream fos = new FileOutputStream(ruta+nombreRespaldo);
+            byte[] buffer = new byte[1000];
+            int leido = is.read(buffer);
+            while (leido > 0) {
+                fos.write(buffer, 0, leido);
+                leido = is.read(buffer);
             }
-            
+            fos.close();
+         JOptionPane.showMessageDialog(null,"Se exporto el archivo","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+            //Logger.getLogger(PruebaEjecutarComando.class.getName()).log(Level.SEVERE,null,e);
+           JOptionPane.showMessageDialog(null,"Error al exportar","Error",JOptionPane.ERROR_MESSAGE);
+        }
+           
         }
     }
     public void setRuta(String ruta) {
